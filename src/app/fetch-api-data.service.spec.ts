@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-
 import { FetchApiDataService } from './fetch-api-data.service';
 
 describe('FetchApiDataService', () => {
@@ -15,3 +14,4 @@ describe('FetchApiDataService', () => {
     expect(service).toBeTruthy();
   });
 });
+
