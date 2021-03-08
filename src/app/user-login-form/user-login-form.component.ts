@@ -20,11 +20,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registerUser(): void {
+  userLogin(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((response) => {
   // Logic for a successful LOGIN registration goes here! (To be implemented)
      this.dialogRef.close(); // This will close the modal on success!
      console.log(response);
+     localStorage.setItem('user', response.user.Username);
+     localStorage.setItem('token', response.token);
      this.snackBar.open('login registered successfully!', 'OK', {
         duration: 2000
      });
