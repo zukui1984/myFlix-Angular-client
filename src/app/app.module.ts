@@ -20,6 +20,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DialogButtonComponent } from './dialog-button/dialog-button.component';
+import { UpdateUserProfileComponent } from './update-user-profile/update-user-profile.component';
+
+
 
 
 const appRoutes: Routes = [
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
-    DialogButtonComponent
+    DialogButtonComponent,
+    UpdateUserProfileComponent
   ],
   imports: [
     BrowserModule,

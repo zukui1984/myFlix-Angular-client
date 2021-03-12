@@ -247,7 +247,7 @@ export class UpdateUserService {
     const token = localStorage.getItem('token');
     return this.http.put(apiUrl + 'users/:username', userDetails, {
       headers: new HttpHeaders(
-      { Authorization: 'Bearer ' + token, })
+        { Authorization: 'Bearer ' + token, })
     }).pipe(
       map(this.extractResponseData),
       catchError(this.handleError)
@@ -274,3 +274,84 @@ export class UpdateUserService {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
+export class DeleteFavoriteMovieService {
+  constructor(
+    private http: HttpClient
+  ) { }
+  /**
+   * making the api call to add a movie to a user’s list of favorites
+   * @param id
+   */
+  deleteFavoriteMovie(id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http.delete(`${apiUrl}users/${username}/favorites/${id}`, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      })
+    }).pipe(map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+  private extractResponseData(res: Response | Object): Response | Object { // res: Response caused an error above on this.extractResponseData
+    const body = res;
+    return body || {};
+  }
+  private handleError(error: HttpErrorResponse): any {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Some error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Error Status code ${error.status}, ` +
+        `Error body is: ${error.error}`
+      );
+    }
+    return throwError(
+      'Something bad happened: please try again later.'
+    );
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EditUserService {
+  constructor(
+    private http: HttpClient
+  ) { }
+  /**
+   * making the api call to edit a user’s information
+   * @param userDetails
+   */
+  editUser(userDetails: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http.put(`${apiUrl}users/${username}`, userDetails, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      })
+    }).pipe(map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+  private extractResponseData(res: Response | Object): Response | Object { // res: Response caused an error above on this.extractResponseData
+    const body = res;
+    return body || {};
+  }
+  private handleError(error: HttpErrorResponse): any {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Some error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Error Status code ${error.status}, ` +
+        `Error body is: ${error.error}`
+      );
+    }
+    return throwError(
+      'Something bad happened: please try again later.'
+    );
+  }
+}

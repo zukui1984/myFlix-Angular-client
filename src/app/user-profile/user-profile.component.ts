@@ -1,70 +1,82 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
 import {
-  GetAllMoviesService,
-  GetOneMovieService,
   GetUserService,
+  GetAllMoviesService,
+  DeleteFavoriteMovieService,
   DeleteUserService
 } from '../fetch-api-data.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateUserProfileComponent } from '../update-user-profile/update-user-profile.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
-  movies: any[] = [];
-
+  user: any = {};
+  movies: any = [];
+  favorites: any = [];
   constructor(
-    public fetchApiData: GetAllMoviesService,
-    public fetchApiDataUser: GetUserService,
-    public fetchApiDataOneMovie: GetOneMovieService,
-    public fetchApiDataDeleteUser: DeleteUserService,
+    public fetchApiData: GetUserService,
+    public fetchApiData2: GetAllMoviesService,
+    // public fetchApiData3: DeleteFavoriteMovieService,
+    public fetchApiData4: DeleteUserService,
+    public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    public snackbar: MatSnackBar,
-    private router: Router
+    public router: Router
   ) { }
-
   ngOnInit(): void {
-    this.getMovies();
+    this.getUser();
   }
-
+  getUser(): void {
+    this.fetchApiData.getUser(localStorage.getItem('user')).subscribe((resp: any) => {
+      this.user = resp;
+      this.getMovies();
+    });
+  }
   getMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+    this.fetchApiData2.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      this.filterFavorites();
     });
   }
- 
-  profileUser(): void {
-    const username = localStorage.getItem('user');
-    this.fetchApiDataUser.getUser(username).subscribe((result) => {
-      localStorage.getItem('token');  
-      console.log(result);    
-      this.snackbar.open(`Welcome to your profile, ${username}!`, 'OK', {
-        duration: 2000
-      });
-      this.router.navigate(['user']);
-    }, (result) => {
-      this.snackbar.open(result, 'OK', {
-        duration: 2000
-      });
-    });
-    { console.log('clicked') }
+  filterFavorites(): void {
+    this.favorites = this.movies.filter((movie: any) =>
+      this.user.FavoriteMovies.includes(movie._id)
+    );
+    return this.favorites;
   }
-
-  deleteUser(): void {
-    this.fetchApiDataDeleteUser.deleteUser().subscribe(() => {
-        console.log('Profile deleted');
+  // removeFromFavorites(id: string, title: string): void {
+  //   this.fetchApiData3.deleteFavoriteMovie(id).subscribe(() => {
+  //     this.snackBar.open(
+  //       `${title} has been removed from your Favorites`, 'OK', {
+  //         duration: 2000,
+  //       }
+  //     );
+  //     setTimeout(function() {
+  //       window.location.reload();
+  //     }, 1000);
+  //   });
+  // }
+  openUpdateProfileDialog(): void {
+    this.dialog.open(UpdateUserProfileComponent, {
+      width: '280px',
+    });
+  }
+  deleteProfile(): void {
+    let ok = confirm('Are you sure you want to delete your profile ?\nThis action cannot be undone.');
+    if (ok) {
+      this.fetchApiData4.deleteUser().subscribe(() => {
         localStorage.clear();
-        this.router.navigate(['welcome']);
-        this.snackbar.open('Profile deleted', 'OK', {
+        this.router.navigate(['welcome']); // routes to the ‘welcome’ view
+        this.snackBar.open('Profile Deleted', 'OK', {
           duration: 2000,
+        });
       });
-    });
+    } else {
+      window.location.reload();
+    }
   }
 }

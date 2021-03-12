@@ -1,63 +1,46 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Profile</mat-card-title>
-  </mat-card-header>
-
-<div class="profile-page">
-  <mat-card id="update-container">
-    <mat-card-header id="update-header">
-      <mat-card-title>Update Profile</mat-card-title>
+<div class="body">
+  <mat-card class="user-proflie">
+    <mat-card-header>
+      <mat-card-title> Your Profile </mat-card-title>
     </mat-card-header>
-    <mat-card-content id="update-card-content">
-      <form>
-        <mat-form-field>
-          <mat-hint>Must be at least 5 characters</mat-hint>
-          <input
-            matInput
-            [(ngModel)]="userData.Username"
-            placeholder="Username"
-            type="text"
-            name="Username"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-hint>Must be alphanumeric and at least 5 characters</mat-hint>
-          <input
-            matInput
-            [(ngModel)]="userData.Password"
-            type="password"
-            placeholder="Password"
-            name="Password"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            [(ngModel)]="userData.Email"
-            type="email"
-            placeholder="Email"
-            name="Email"
-            required
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <input
-            matInput
-            [(ngModel)]="userData.Birthday"
-            type="date"
-            placeholder="Birthday"
-            name="Birthday"
-          />
-        </mat-form-field>
-      </form>
+    <mat-card-content> Username: {{ user.Username }} </mat-card-content>
+    <mat-card-content> Password: ******** </mat-card-content>
+    <mat-card-content> Email: {{ user.Email }} </mat-card-content>
+    <mat-card-content>
+      Birthday: {{ user.Birthday | date: "MM/dd/yyyy":"UTC" }}
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button 
-      (click)="profileUser()" 
-      color="primary">
-        Update
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openUpdateProfileDialog()"
+      >
+        Update Profile Information
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteProfile()">
+        Delete Profile
       </button>
     </mat-card-actions>
+    <mat-card-content>
+      <mat-card-title>Your Favorite Movies:</mat-card-title>
+    </mat-card-content>
+    <div class="favorite-cards">
+      <mat-card *ngFor="let favorite of favorites">
+        <mat-card-header>
+          <mat-card-title>{{ favorite.Title }}</mat-card-title>
+          <!-- <mat-card-subtitle>Directed by: {{favorite.Director.Name}}</mat-card-subtitle> -->
+        </mat-card-header>
+        <img src="{{ favorite.ImagePath }}" alt="{{ favorite.Title }}" />
+        <mat-card-actions>
+          <button
+            mat-button
+            color="primary"
+            (click)="removeFromFavorites(favorite._id, favorite.Title)"
+          >
+            Remove From favorites
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </mat-card>
+</div>

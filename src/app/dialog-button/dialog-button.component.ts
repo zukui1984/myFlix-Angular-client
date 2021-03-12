@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-dialog-button',
@@ -9,10 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class DialogButtonComponent implements OnInit {
 
   constructor(
-    public data: {
-    director: string;
-    genre: string;
-    }
+ 
   ) { }
 
   ngOnInit(): void {
