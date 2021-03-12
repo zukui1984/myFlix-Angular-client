@@ -232,3 +232,45 @@ export class DeleteUserService {
     );
   }
 }
+
+// UPDATE USER
+@Injectable({
+  providedIn: 'root'
+})
+
+export class UpdateUserService {
+  constructor(private http: HttpClient) {
+  }
+
+  public updateUser(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    const token = localStorage.getItem('token');
+    return this.http.put(apiUrl + 'users/:username', userDetails, {
+      headers: new HttpHeaders(
+      { Authorization: 'Bearer ' + token, })
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+    );
+  }
+
+  private extractResponseData(res: Response): any {
+    const body = res;
+    return body || {};
+  }
+
+  private handleError(error: HttpErrorResponse): any {
+    if (error.error instanceof ErrorEvent) {
+      console.error('Some error occured:', error.error.message);
+    } else {
+      console.error(
+        `Error status is ${error.status}, ` +
+        `Error body is: ${error.error}`
+      );
+    }
+    return throwError(
+      'Something bad happened: please try again later.'
+    );
+  }
+}
+
