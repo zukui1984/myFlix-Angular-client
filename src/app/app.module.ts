@@ -19,8 +19,10 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { DialogButtonComponent } from './dialog-button/dialog-button.component';
 import { UpdateUserProfileComponent } from './update-user-profile/update-user-profile.component';
+import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
+import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
+import { DetailsDialogComponent } from './details-dialog/details-dialog.component';
 
 
 
@@ -41,8 +43,10 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
-    DialogButtonComponent,
-    UpdateUserProfileComponent
+    UpdateUserProfileComponent,
+    DirectorDialogComponent,
+    GenreDialogComponent,
+    DetailsDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   GetUserService,
   GetAllMoviesService,
-  DeleteFavoriteMovieService,
+//DeleteFavoriteMovieService,
   DeleteUserService
 } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
