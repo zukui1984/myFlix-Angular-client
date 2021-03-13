@@ -40,12 +40,12 @@ export class UpdateUserProfileComponent implements OnInit {
       this.userData = resp;
     });
   }
- 
+
   profileUser(): void {
     const username = localStorage.getItem('user');
     this.fetchApiDataUser.getUser(username).subscribe((result) => {
-      localStorage.getItem('token');  
-      console.log(result);    
+      localStorage.getItem('token');
+      console.log(result);
       this.snackbar.open(`Welcome to your profile, ${username}!`, 'OK', {
         duration: 2000
       });
@@ -60,11 +60,11 @@ export class UpdateUserProfileComponent implements OnInit {
 
   deleteUser(): void {
     this.fetchApiDataDeleteUser.deleteUser().subscribe(() => {
-        console.log('Profile deleted');
-        localStorage.clear();
-        this.router.navigate(['welcome']);
-        this.snackbar.open('Profile deleted', 'OK', {
-          duration: 2000,
+      console.log('Profile deleted');
+      localStorage.clear();
+      this.router.navigate(['welcome']);
+      this.snackbar.open('Profile deleted', 'OK', {
+        duration: 2000,
       });
     });
   }
@@ -73,7 +73,7 @@ export class UpdateUserProfileComponent implements OnInit {
     this.fetchApiEditUser.editUser(this.userData).subscribe((response) => {
       // logic for a successful user edit goes here
       this.dialogRef.close(); // closes the modal on success
-      // localStorage.setItem(‘user’, response.Username);
+      // localStorage.setItem('user', response.Username);
       this.snackbar.open('Profile updated successfully!', 'OK', {
         duration: 2000,
       });
@@ -87,9 +87,6 @@ export class UpdateUserProfileComponent implements OnInit {
       });
     })
   }
-
-  
-
 }
 
 

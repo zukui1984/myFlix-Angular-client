@@ -1,5 +1,6 @@
+import { stringify } from '@angular/compiler/src/util';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DetailsDialogComponent } from '../details-dialog/details-dialog.component';
 import { MovieCardComponent } from './movie-card.component';
 
 describe('MovieCardComponent', () => {

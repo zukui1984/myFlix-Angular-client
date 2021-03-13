@@ -25,8 +25,6 @@ import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
 import { DetailsDialogComponent } from './details-dialog/details-dialog.component';
 
 
-
-
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -57,6 +55,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     MatCardModule,
     MatFormFieldModule,
     MatSnackBarModule,
