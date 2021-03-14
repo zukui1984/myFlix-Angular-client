@@ -355,3 +355,7 @@ export class EditUserService {
     );
   }
 }
+
+export class FetchApiDataService {
+  constructor() {}
+}

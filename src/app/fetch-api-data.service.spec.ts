@@ -1,9 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {FetchApiDataService} from './fetch-api-data.service';
 
-export class FetchApiDataServiceComponent {
-  constructor() {
-
     describe('FetchApiDataService', () => {
       let service: FetchApiDataService;
 
@@ -16,6 +13,4 @@ export class FetchApiDataServiceComponent {
         expect(service).toBeTruthy();
       });
     });
-  }
-}
 
