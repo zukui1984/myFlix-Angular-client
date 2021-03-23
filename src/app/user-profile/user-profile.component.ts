@@ -30,6 +30,10 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   }
+
+   /**
+   * Gets the user's data from the database
+   */
   getUser(): void {
     this.fetchApiData.getUser(localStorage.getItem('user')).subscribe((resp: any) => {
       this.user = resp;
@@ -48,23 +52,19 @@ export class UserProfileComponent implements OnInit {
     );
     return this.favorites;
   }
-  // removeFromFavorites(id: string, title: string): void {
-  //   this.fetchApiData3.deleteFavoriteMovie(id).subscribe(() => {
-  //     this.snackBar.open(
-  //       `${title} has been removed from your Favorites`, 'OK', {
-  //         duration: 2000,
-  //       }
-  //     );
-  //     setTimeout(function() {
-  //       window.location.reload();
-  //     }, 1000);
-  //   });
-  // }
+  
+  /**
+   * Opens the dialog to update a user's profile
+   */
   openUpdateProfileDialog(): void {
     this.dialog.open(UpdateUserProfileComponent, {
       width: '280px',
     });
   }
+
+   /**
+   * This will delete the user's profile after confirming
+   */
   deleteProfile(): void {
     let ok = confirm('Are you sure you want to delete your profile ?\nThis action cannot be undone.');
     if (ok) {

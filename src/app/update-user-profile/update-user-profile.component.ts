@@ -41,6 +41,9 @@ export class UpdateUserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * This function update user information
+  */
   profileUser(): void {
     const username = localStorage.getItem('user');
     this.fetchApiDataUser.getUser(username).subscribe((result) => {
@@ -58,6 +61,9 @@ export class UpdateUserProfileComponent implements OnInit {
     { console.log('clicked') }
   }
 
+   /**
+   * This function delete user information
+   */
   deleteUser(): void {
     this.fetchApiDataDeleteUser.deleteUser().subscribe(() => {
       console.log('Profile deleted');
@@ -69,6 +75,9 @@ export class UpdateUserProfileComponent implements OnInit {
     });
   }
 
+   /**
+   * This function updates user information and refreshes the page
+   */
   editUser(): void {
     this.fetchApiEditUser.editUser(this.userData).subscribe((response) => {
       // logic for a successful user edit goes here

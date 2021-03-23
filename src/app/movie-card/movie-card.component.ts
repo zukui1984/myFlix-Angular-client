@@ -33,6 +33,9 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * This retrieves a list of all the movies and stores them in an array
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -41,6 +44,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param title 
+   * @param image 
+   * @param description 
+   * @param director 
+   * @param genre 
+   */
   showDetailsDialog(title: string, image: string, description: string,
     director: string, genre: string): void {
     this.dialog.open(DetailsDialogComponent, {
@@ -48,12 +59,24 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param name 
+   * @param bio 
+   * @param birth 
+   * @param death 
+   */
   showDirectorDialog(name: string, bio: string, birth: Date, death: Date): void {
     this.dialog.open(DirectorDialogComponent, {
       data: { name, bio, birth, death },
     });
   }
 
+  /**
+   * 
+   * @param name 
+   * @param description 
+   */
   showGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreDialogComponent, {
       data: { name, description },

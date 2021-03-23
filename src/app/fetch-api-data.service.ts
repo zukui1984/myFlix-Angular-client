@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
 //Declaring the api url that will provide data for the client app
 const apiUrl = 'https://movie-api-1684.herokuapp.com/';
 
-
 // USER REGISTRATION
 @Injectable({
   providedIn: 'root'
@@ -23,6 +22,7 @@ export class UserRegistrationService {
       catchError(this.handleError)
     );
   }
+
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
