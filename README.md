@@ -6,8 +6,6 @@ documentation.
 
 ## Screenshots
 
-![login](https://user-images.githubusercontent.com/71074389/112536879-4cf6ca00-8dae-11eb-99d6-4779ff34d3ae.JPG)
-
 ![login b](https://user-images.githubusercontent.com/71074389/112536891-5122e780-8dae-11eb-9d19-89ab010d7166.JPG)
 
 ## Development server
