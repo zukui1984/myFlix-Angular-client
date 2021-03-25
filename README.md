@@ -1,28 +1,36 @@
-# MyFlixAngularClient
+# MyFlix-AngularClient (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+This project purpose to build the client-side for an application called myFlix based on
+its existing server-side code (REST API and database), with supporting
+documentation.
+
+## Screenshots
+
+![login](https://user-images.githubusercontent.com/71074389/112536879-4cf6ca00-8dae-11eb-99d6-4779ff34d3ae.JPG)
+
+![login b](https://user-images.githubusercontent.com/71074389/112536891-5122e780-8dae-11eb-9d19-89ab010d7166.JPG)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Key Features
+* Your app should display a welcome view where users will be able to either log in or register an
+account.
+* Once authenticated, the user should now view all movies.
+* Upon clicking on a particular movie, users will be taken to a single movie view, where
+additional movie details will be displayed. The single movie view will contain the following
+additional features:
+* A button that when clicked takes a user to the director view , where details about the
+director of that particular movie will be displayed.
+* A button that when clicked takes a user to the genre view , where details about that
+particular genre of the movie will be displayed.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# myFlix-Angular-client
+## Technical Requirements
+* Angular (version 9 or later)
+* Latest version of Node.js and npm package
+* contain user registration and login forms
+* Using Angular Material
+* Comments using Typedoc
+* Technical documentation using JSDoc
+* Hosted on GitHub Pages (gh-pages)
