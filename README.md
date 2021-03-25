@@ -6,7 +6,7 @@ documentation.
 
 ## Screenshots
 
-![login b](https://user-images.githubusercontent.com/71074389/112536891-5122e780-8dae-11eb-9d19-89ab010d7166.JPG)
+![login b](https://user-images.githubusercontent.com/71074389/112537912-8976f580-8daf-11eb-9a81-ecd5ca99411c.JPG)
 
 ## Development server
 
